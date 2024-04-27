@@ -21,9 +21,9 @@ CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98 
 RM = rm -rf
 
-NAME =  PhoneBook#exec
-INCLUDES = PhoneBook.hpp contact.hpp
-SRC = PhoneBook.cpp contact.cpp   main.cpp
+NAME =  Account#exec
+INCLUDES = Account.hpp
+SRC = Account.cpp tests.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME)
