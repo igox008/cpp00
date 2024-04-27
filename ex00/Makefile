@@ -17,8 +17,8 @@ BG_MAGENTA=\033[45m
 BG_CYAN=\033[46m
 BG_WHITE=\033[47m
 
-CC = g++
-CFLAGS = -Wall -Werror -Wextra 
+CC = c++
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -rf
 
 NAME =  megaphone
