@@ -6,7 +6,7 @@
 /*   By: alaassir <alaassir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 00:50:10 by alaassir          #+#    #+#             */
-/*   Updated: 2024/04/27 03:41:47 by alaassir         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:17:55 by alaassir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ PhoneBook::~PhoneBook()
 std::string	resize_it(std::string s)
 {
 	if (s.size() > 10)
+	{
 		s.resize(10);
+		s[s.size() - 1] = '.';
+	}
 	return (s);
 }
 
@@ -49,6 +52,16 @@ bool	is_valid_number(std::string s)
 	return (true);
 }
 
+bool	all_space(std::string str)
+{
+	for (int i = 0;str[i];i++)
+	{
+		if (!isspace(str[i]))
+			return (false);
+	}
+	return (true);
+}
+
 std::string	prompt(std::string _get)
 {
 	std::string input;
@@ -60,12 +73,12 @@ std::string	prompt(std::string _get)
 		std::cout << "Enter the " << _get << " : ";
 		if (!std::getline(std::cin, input))
 			break ;
-		if (input.empty())
+		if (input.empty() || all_space(input))
 		{
 			std::cout << _get << " can't be empty, try again : ";
 			if (!std::getline(std::cin, input))
 				break ;
-			while (input.empty())
+			while (input.empty() || all_space(input))
 			{
 				std::cout << _get << " can't be empty, try again : ";
 				if (!std::getline(std::cin, input))
@@ -102,8 +115,10 @@ void    PhoneBook::add_contact(void)
 
 std::string	add_spaces(std::string s)
 {
-	while (s.size() < 10)
-		s.append(" ");
+	std::string	tmp = "";
+	while (s.size() + tmp.size() < 10)
+		tmp.append(" ");
+	s.insert(0, tmp);
 	return (s);
 }
 
